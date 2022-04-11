@@ -35,13 +35,24 @@ class _TimeHourAndMinuteState extends State<TimeHourAndMinute> {
   }
 
   String getMinuteTextValid(int minute) {
-    String minuteValid = '';
+    String minuteValid = '0';
     if (minute <= 9) {
       minuteValid = '0$minute';
     } else {
       minuteValid = minute.toString();
     }
     return minuteValid;
+  }
+
+  String getHourTextValid(int hour) {
+    String hourValid = '0';
+    if (hour <= 9) {
+      hourValid = '0$hour';
+    } else {
+      hourValid = hour.toString();
+    }
+
+    return hourValid;
   }
 
   @override
@@ -53,7 +64,7 @@ class _TimeHourAndMinuteState extends State<TimeHourAndMinute> {
       children: [
         // hour untuk 24 jam, hour of period untuk 12 jam
         Text(
-          '${_timeOfDay.hourOfPeriod}:${getMinuteTextValid(_timeOfDay.minute)}',
+          '${getHourTextValid(_timeOfDay.hourOfPeriod)}:${getMinuteTextValid(_timeOfDay.minute)}',
           style: Theme.of(context)
               .textTheme
               .headline1

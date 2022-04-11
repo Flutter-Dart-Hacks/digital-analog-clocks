@@ -20,6 +20,30 @@ ThemeData themeData(BuildContext context) {
     colorScheme: const ColorScheme.light(
       secondary: kSecondaryLightColor,
       // on light theme surface = Colors.white by default
+    ).copyWith(
+      secondary: kAccentLightColor,
+      onSecondary: kSecondaryLightColor,
+    ),
+  );
+}
+
+ThemeData themeDatas(BuildContext context) {
+  return ThemeData(
+    appBarTheme: appBarTheme,
+    primaryColor: kPrimaryColor,
+    scaffoldBackgroundColor: Colors.white,
+    backgroundColor: Colors.white,
+    iconTheme: const IconThemeData(color: kBodyTextColorLight),
+    primaryIconTheme: const IconThemeData(color: kPrimaryIconLightColor),
+    textTheme: GoogleFonts.latoTextTheme().copyWith(
+      bodyText1: const TextStyle(color: kBodyTextColorLight),
+      bodyText2: const TextStyle(color: kBodyTextColorLight),
+      headline4: const TextStyle(color: kTitleTextLightColor, fontSize: 32),
+      headline1: const TextStyle(color: kTitleTextLightColor, fontSize: 80),
+    ),
+    colorScheme: const ColorScheme.light(
+      secondary: kSecondaryLightColor,
+      // on light theme surface = Colors.white by default
     ).copyWith(secondary: kAccentLightColor),
   );
 }
@@ -42,7 +66,10 @@ ThemeData darkThemeData(BuildContext context) {
     colorScheme: const ColorScheme.light(
       secondary: kSecondaryDarkColor,
       surface: kSurfaceDarkColor,
-    ).copyWith(secondary: kAccentDarkColor),
+    ).copyWith(
+      secondary: kAccentDarkColor,
+      onSecondary: kSecondaryDarkColor,
+    ),
   );
 }
 

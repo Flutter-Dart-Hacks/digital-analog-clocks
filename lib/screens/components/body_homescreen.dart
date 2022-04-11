@@ -1,3 +1,4 @@
+import 'package:analogdigiclock/screens/components/clocks.dart';
 import 'package:analogdigiclock/screens/components/time_in_hourminute.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,8 @@ class BodyHomescreen extends StatelessWidget {
             'Bandung, Indonesia | WIB',
             style: Theme.of(context).textTheme.bodyText1,
           ),
-          const TimeHourAndMinute()
+          const TimeHourAndMinute(),
+          const Clock(),
         ],
       ),
     );
