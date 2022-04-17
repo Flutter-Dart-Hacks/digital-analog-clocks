@@ -1,9 +1,22 @@
+import 'package:analogdigiclock/models/theming_provider.dart';
 import 'package:analogdigiclock/screens/home_screen.dart';
 import 'package:analogdigiclock/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const ClockApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) {
+            return ThemingProvider();
+          },
+        )
+      ],
+      child: const ClockApp(),
+    ),
+  );
 }
 
 class ClockApp extends StatelessWidget {
@@ -11,13 +24,17 @@ class ClockApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Analog Clock',
-      theme: themeData(context),
-      darkTheme: darkThemeData(context),
-      themeMode: ThemeMode.light,
-      home: const HomeScreen(),
+    return Consumer<ThemingProvider>(
+      builder: (context, ThemingProvider theme, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Analog Clock',
+          theme: themeData(context),
+          darkTheme: darkThemeData(context),
+          themeMode: theme.isLightTheme ? ThemeMode.light : ThemeMode.dark,
+          home: const HomeScreen(),
+        );
+      },
     );
   }
 }
