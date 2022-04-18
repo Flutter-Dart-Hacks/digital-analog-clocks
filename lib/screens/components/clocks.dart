@@ -18,15 +18,22 @@ class Clock extends StatefulWidget {
 
 class _ClockState extends State<Clock> {
   DateTime _dateTime = DateTime.now();
+  Timer? timer;
 
   @override
   void initState() {
     super.initState();
-    Timer.periodic(const Duration(seconds: 1), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         _dateTime = DateTime.now();
       });
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    timer?.cancel();
   }
 
   @override
@@ -67,14 +74,19 @@ class _ClockState extends State<Clock> {
           left: 0,
           child: Consumer<ThemingProvider>(
             builder: (context, ThemingProvider theme, child) {
-              return SvgPicture.asset(
-                theme.isLightTheme
-                    ? 'assets/icons/Sun.svg'
-                    : 'assets/icons/Moon.svg',
-                width: 32,
-                height: 32,
-                color: Theme.of(context).primaryColor,
-                fit: BoxFit.none,
+              return GestureDetector(
+                onTap: () {
+                  theme.changeTheme();
+                },
+                child: SvgPicture.asset(
+                  theme.isLightTheme
+                      ? 'assets/icons/Sun.svg'
+                      : 'assets/icons/Moon.svg',
+                  width: 32,
+                  height: 32,
+                  color: Theme.of(context).primaryColor,
+                  fit: BoxFit.none,
+                ),
               );
             },
           ),
