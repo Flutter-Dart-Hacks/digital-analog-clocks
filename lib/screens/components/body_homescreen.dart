@@ -32,21 +32,24 @@ class BodyHomescreen extends StatelessWidget {
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: const [
-                    CountryCard(
+                  children: [
+                    const CountryCard(
                       country: 'Ciamis, Indonesia',
                       timeZone: '+3 Hours | WIB',
                       iconSrc: 'assets/icons/Liberty.svg',
                       time: '09:30',
                       period: 'AM',
                     ),
-                    CountryCard(
+                    const CountryCard(
                       country: 'Cimahi, Indonesia',
                       timeZone: '+2 Hours | WIB',
                       iconSrc: 'assets/icons/Sydney.svg',
                       time: '07:30',
                       period: 'AM',
                     ),
+                    SizedBox(
+                      width: getProportionateScreenWidth(20),
+                    )
                   ],
                 ),
               ),
@@ -82,7 +85,7 @@ class CountryCard extends StatelessWidget {
       child: SizedBox(
         width: getProportionateScreenWidth(233),
         child: AspectRatio(
-          aspectRatio: 1.32,
+          aspectRatio: 1.230,
           child: Container(
             padding: EdgeInsets.all(
               getProportionateScreenWidth(20),
@@ -108,33 +111,36 @@ class CountryCard extends StatelessWidget {
                   height: 5,
                 ),
                 Text(timeZone),
-                const Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      iconSrc,
-                      width: getProportionateScreenWidth(40),
-                      fit: BoxFit.contain,
-                      color: Theme.of(context).iconTheme.color,
-                    ),
-                    const Spacer(),
-                    Text(
-                      time,
-                      style: Theme.of(context).textTheme.headline4,
-                    ),
-                    RotatedBox(
-                      quarterTurns: 3,
-                      child: Text(
-                        period,
-                        style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12,
-                            ),
+                Container(
+                  alignment: Alignment.center,
+                  height: 64,
+                  margin: const EdgeInsets.only(top: 16, bottom: 10),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        iconSrc,
+                        fit: BoxFit.contain,
+                        width: getProportionateScreenWidth(40),
+                        color: Theme.of(context).iconTheme.color,
                       ),
-                    )
-                  ],
+                      const Spacer(),
+                      Text(
+                        time,
+                        style: Theme.of(context).textTheme.headline4,
+                      ),
+                      RotatedBox(
+                        quarterTurns: 3,
+                        child: Text(
+                          period,
+                          style:
+                              Theme.of(context).textTheme.bodyText2?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12,
+                                  ),
+                        ),
+                      )
+                    ],
+                  ),
                 )
               ],
             ),
